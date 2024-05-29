@@ -1,0 +1,100 @@
+<h1
+  class="text-base sm:text-xl md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-gray-800"
+>
+  GitScope
+</h1>
+<div class="w-full sm:flex-row sm:justify-center bg-slate-300">
+  <input
+    [(ngModel)]="input"
+    type="text"
+    id="search-bar"
+    class="w-1/2 bg-gray-800 text-gray-100 py-2 px-6 rounded-xl m-2 sm:m-8 focus:outline-none focus:ring-2 focus:ring-slate-400 placeholder-slate-300"
+    placeholder="Type GitHub username here..."
+  />
+  <button
+    class="bg-gray-800 text-gray-100 py-2 px-6 rounded-xl hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-slate-400 sm:m-8"
+    (click)="searchUser(input)"
+  >
+    Search
+  </button>
+</div>
+<app-info
+  *ngIf="!error && !loading"
+  (setPageNumber)="setPageNumber($event)"
+  [input_page_size]="pagesize"
+  [userData]="userData"
+  class="col-span-2 row-span-1 flex flex-col sm:flex-row justify-center w-full m-auto bg-slate-300"
+>
+</app-info>
+<ngx-skeleton-loader
+  *ngIf="loading"
+  [theme]="{
+'border-radius': '50%',
+'width': '200px',
+'height': '200px',
+
+}"
+  appearance="circle"
+/>
+<p class="font-bold text-2xl text-gray-800" *ngIf="!error && !loading">
+  User Repositeries : {{ userData.public_repos }}
+</p>
+
+<ngx-skeleton-loader
+  *ngIf="loading"
+  [count]="8"
+  [theme]="{'width':'800px',
+  'margin':'30px',
+  'display':'block',
+'height':'30px',
+'rounded':'20%',}"
+></ngx-skeleton-loader>
+<app-main
+  *ngIf="!error && !loading"
+  [language]="language"
+  [reposData]="reposData"
+  class="w-full p-12 grid grid-cols-1 sm:grid-cols-2 h-auto gap-10 bg-slate-300"
+>
+</app-main>
+<!-- <div *ngIf="loading">
+  <p>Loading..........</p>
+</div> -->
+<p *ngIf="error">
+  {{ error_msg }}
+</p>
+
+<div
+  *ngIf="!error && !loading"
+  class="flex flex-col items-center bg-gray-800 p-4 min-1/12 bg-slate-300 w-full"
+>
+  <div class="w-full h-auto bg-slate-300">
+    <button
+      *ngFor="let page of pagesarray; let i = index"
+      class="button bg-slate-700 text-white p-2 rounded-md m-1"
+      (click)="setPage(i + 1)"
+    >
+      {{ i + 1 }}
+    </button>
+  </div>
+  <div class="flex flex-row bg-slate-300">
+    <button
+      *ngIf="page > 1"
+      id="prev"
+      class="bg-slate-700 text-white p-2 rounded-md m-2 md:m-4"
+      (click)="onPrev()"
+    >
+      Previous
+    </button>
+    <button
+      *ngIf="page < totalpages"
+      id="prev"
+      class="bg-slate-700 text-white p-2 rounded-md m-2 md:m-4"
+      (click)="onNext()"
+    >
+      Next
+    </button>
+  </div>
+  <p *ngIf="!error && !loading">
+    Page {{ this.page }} of {{ this.totalpages }}
+  </p>
+</div>

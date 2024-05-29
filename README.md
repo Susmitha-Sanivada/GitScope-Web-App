@@ -1,43 +1,33 @@
-# Fyle Frontend Challenge
+#GitScope
 
-## Who is this for?
+It is a simple web app which take the username of a github user then provides the basic information of the account and lists all the repositories of the user.
+It is Responsive...
+We can select number of results per page and can take a look at every page.
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+Unit Tests
+The unit tests that I've written for this project are totally 11.
 
-## Why work at Fyle?
+ApiService:
+should be created
+should fetch user data
+should fetch repos data
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+InfoComponent:
+should emit setPageNumber event
+should have default input_page_size set to 10
+should have null userData by default
+should set userData when provided through @Input
+should create
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+SearchComponent:
+should create
+should call getUser when searchUser is executed
 
-## Challenge outline
+MainComponent:
+should create
 
-This challenge involves implementing application using github api. 
+Here 1 service (ApiService) and 1 component (InfoComponent) are having unit tests with 100% code coverage.
 
-The services that you need to use are already implemented - check out ApiService.
+To run the tests simply run the ng test command in the angular cli.
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
-
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
-
-## What happens next?
-
-You will hear back within 48 hours from us via email.
-
-## Installation
-
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
-
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Further help
-
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+Also there are no duplicate Apicalls while changing the pages.

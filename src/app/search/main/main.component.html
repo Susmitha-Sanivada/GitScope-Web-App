@@ -1,0 +1,29 @@
+<div
+  *ngFor="let repo of reposData; let i = index"
+  (click)="openRepo(i)"
+  class="w-full h-[150px] bg-gradient-to-r from-gray-800 via-gray-700 to-gray-600 rounded-xl p-4 shadow-lg cursor-pointer"
+>
+  <div
+    class="flex flex-col justify-start items-start m-auto flex-wrap rounded-lg max-w-full truncate p-auto"
+  >
+    <p class="text-white text-lg font-bold mb-2" *ngIf="repo.name">
+      {{ repo.name }}
+    </p>
+    <p class="text-white text-sm mb-2 truncate" *ngIf="repo.description">
+      Description: {{ repo.description }}
+    </p>
+    <p class="text-white text-sm mb-2" *ngIf="language && repo.language">
+      Language: {{ repo.language }}
+    </p>
+    <div class="flex flex-wrap gap-1 truncate">
+      <div *ngFor="let topic of repo.topics; let i = index">
+        <p
+          class="bg-slate-500 text-white text-sm px-2 py-1 rounded-md truncate"
+          *ngIf="i < 5"
+        >
+          {{ topic }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
